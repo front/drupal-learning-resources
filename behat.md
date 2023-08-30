@@ -64,50 +64,10 @@ Now it's time to require some behat packages. Since we are using Drupal 10, we n
 composer require drupal/drupal-extension ^5-rc --dev
 ```
 
-That would hopefully give us some new packages. Now it's time to add a behat.yml.dist file. Create this file in the root of your directory:
+That would hopefully give us some new packages. Now it's time to add a behat.yml.dist file. We can do that based on the one in the assets directory in this repo, by running this command:
 
-```yml
-default:
-  autoload:
-    - './tests/src'
-  suites:
-    default:
-      paths:
-        features: "%paths.base%/tests/features"
-      filters:
-        tags: "~@todo"
-      contexts:
-        - Drupal\DrupalExtension\Context\MarkupContext
-        - Drupal\DrupalExtension\Context\MessageContext
-        - Drupal\DrupalExtension\Context\DrushContext
-        - Drupal\DrupalExtension\Context\DrupalContext
-        - Behat\MinkExtension\Context\MinkContext
-  extensions:
-    Drupal\MinkExtension:
-      ajax_timeout: 20
-      base_url: http://web
-      files_path: "%paths.base%/tests/files"
-      browserkit_http: ~
-      selenium2:
-        wd_host: http://chromedriver:8643/wd/hub
-        capabilities:
-          extra_capabilities:
-            goog:chromeOptions:
-              w3c: false
-          marionette: null
-          chrome:
-            switches:
-              - "--headless"
-              - "--disable-gpu"
-              - "--no-sandbox"
-              - "--disable-dev-shm-usage"
-    Drupal\DrupalExtension:
-      drush:
-        root: ./web
-      blackbox: ~
-      drupal:
-        drupal_root: "%paths.base%/web"
-      api_driver: 'drupal'
+```bash
+$ wget https://raw.githubusercontent.com/front/drupal-learning-resources/main/assets/behat.yml -O behat.yml.dist
 ```
 
 Some of these values we will come back to, but this should be more than enough to write the first test.
