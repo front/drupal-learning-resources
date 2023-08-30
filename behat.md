@@ -64,7 +64,7 @@ Now it's time to require some behat packages. Since we are using Drupal 10, we n
 composer require drupal/drupal-extension ^5-rc --dev
 ```
 
-That would hopefully give us some new packages. Now it's time to add a behat.yml.dist file. We can do that based on the one in the assets directory in this repo, by running this command:
+That would hopefully give us some new packages. Now it's time to add a behat.yml.dist file. We can do that based on [the one in the assets directory in this repo](assets/behat.yml), by running this command:
 
 ```bash
 wget https://raw.githubusercontent.com/front/drupal-learning-resources/main/assets/behat.yml -O behat.yml.dist
@@ -78,7 +78,7 @@ According to this file, our tests should be located in `tests/features`. So let'
 mkdir -p tests/features
 ```
 
-And now let's create a simple test that checks that the site is working. Let's create a file called `check.site.feature` in there. `.feature` is the file extension we will be using, and the syntax will be [the gherkin language](https://docs.behat.org/en/latest/user_guide/gherkin.html). Create that file inside of the folder `tests/features` and use the file from the assets directory as the contents:
+And now let's create a simple test that checks that the site is working. Let's create a file called `check.site.feature` in there. `.feature` is the file extension we will be using, and the syntax will be [the gherkin language](https://docs.behat.org/en/latest/user_guide/gherkin.html). Create that file inside of the folder `tests/features` and use [the file from the assets directory](assets/check.site.feature) as the contents:
 
 ```
 wget https://raw.githubusercontent.com/front/drupal-learning-resources/main/assets/check.site.feature -O tests/features/check.site.feature
