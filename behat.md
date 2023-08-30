@@ -40,12 +40,21 @@ ddev composer create drupal/recommended-project
 
 After the project is started I just install a default Drupal install:
 
+I ssh into the container so it's easier with the following commands
+
 ```
-# I ssh into the container so it's easier with the following commands
 $ ddev ssh
-# I also add drush in here, since it's useful
+```
+
+I also add drush in here, since it's useful
+
+```
 $ composer require drush/drush
-# Now let's install drupal.
+```
+
+Now let's install drupal.
+
+```
 $ drush site:install -y
 ```
 
