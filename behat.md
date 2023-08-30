@@ -43,19 +43,19 @@ After the project is started I just install a default Drupal install:
 I ssh into the container so it's easier with the following commands
 
 ```
-$ ddev ssh
+ddev ssh
 ```
 
 I also add drush in here, since it's useful
 
 ```
-$ composer require drush/drush
+composer require drush/drush
 ```
 
 Now let's install drupal.
 
 ```
-$ drush site:install -y
+drush site:install -y
 ```
 
 Now it's time to require some behat packages. Since we are using Drupal 10, we need to use version 5 of the Drupal extension.
@@ -67,7 +67,7 @@ composer require drupal/drupal-extension ^5-rc --dev
 That would hopefully give us some new packages. Now it's time to add a behat.yml.dist file. We can do that based on the one in the assets directory in this repo, by running this command:
 
 ```bash
-$ wget https://raw.githubusercontent.com/front/drupal-learning-resources/main/assets/behat.yml -O behat.yml.dist
+wget https://raw.githubusercontent.com/front/drupal-learning-resources/main/assets/behat.yml -O behat.yml.dist
 ```
 
 Some of these values we will come back to, but this should be more than enough to write the first test.
@@ -75,23 +75,13 @@ Some of these values we will come back to, but this should be more than enough t
 According to this file, our tests should be located in `tests/features`. So let's start by creating that:
 
 ```
-$ mkdir -p tests/features
+mkdir -p tests/features
 ```
 
-And now let's create a simple test that checks that the site is working. Let's create a file called `check.site.feature` in there. `.feature` is the file extension we will be using, and the syntax will be [the gherkin language](https://docs.behat.org/en/latest/user_guide/gherkin.html). Create that file inside of the folder `tests/features` and use this as the contents:
+And now let's create a simple test that checks that the site is working. Let's create a file called `check.site.feature` in there. `.feature` is the file extension we will be using, and the syntax will be [the gherkin language](https://docs.behat.org/en/latest/user_guide/gherkin.html). Create that file inside of the folder `tests/features` and use the file from the assets directory as the contents:
 
 ```
-@site-check @api
-Feature: Site check
-  Scenario: An anonymous user can access the front page
-    Given I am an anonymous user
-    When I am on the homepage
-    Then the response status code should be 200
-
-  Scenario: An anonymous user can access the user login page
-    Given I am an anonymous user
-    When I go to "user/login"
-    Then the response status code should be 200
+wget https://raw.githubusercontent.com/front/drupal-learning-resources/main/assets/check.site.feature -O tests/features/check.site.feature
 ```
 
 This syntax is hopefully pretty easy to understand, but what this means is we have 2 tests: One that visits the frontpage and checks if the status code is 200. And another one checks if the status code is 200 on the user/login page. Not super useful, but not super unuseful either.
@@ -99,7 +89,12 @@ This syntax is hopefully pretty easy to understand, but what this means is we ha
 Now let's try to run it:
 
 ```
-$ ./vendor/bin/behat 
+./vendor/bin/behat
+```
+
+The output should look something like this:
+
+```
 @site-check @api
 Feature: Site check
 
