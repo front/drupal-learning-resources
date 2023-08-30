@@ -1,0 +1,41 @@
+default:
+  autoload:
+    - './tests/src'
+  suites:
+    default:
+      paths:
+        features: "%paths.base%/tests/features"
+      filters:
+        tags: "~@todo"
+      contexts:
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Behat\MinkExtension\Context\MinkContext
+  extensions:
+    Drupal\MinkExtension:
+      ajax_timeout: 20
+      base_url: http://web
+      files_path: "%paths.base%/tests/files"
+      browserkit_http: ~
+      selenium2:
+        wd_host: http://chromedriver:8643/wd/hub
+        capabilities:
+          extra_capabilities:
+            goog:chromeOptions:
+              w3c: false
+          marionette: null
+          chrome:
+            switches:
+              - "--headless"
+              - "--disable-gpu"
+              - "--no-sandbox"
+              - "--disable-dev-shm-usage"
+    Drupal\DrupalExtension:
+      drush:
+        root: ./web
+      blackbox: ~
+      drupal:
+        drupal_root: "%paths.base%/web"
+      api_driver: 'drupal'
