@@ -158,3 +158,5 @@ Feature: Site check
 ```
 
 :rocket: It totally works!
+
+Next: [Behat with a browser](behat-browser.yml)
