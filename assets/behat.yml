@@ -12,7 +12,7 @@ default:
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\DrushContext
         - Drupal\DrupalExtension\Context\DrupalContext
-        - Behat\MinkExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MinkContext
   extensions:
     Drupal\MinkExtension:
       ajax_timeout: 20
@@ -20,7 +20,7 @@ default:
       files_path: "%paths.base%/tests/files"
       browserkit_http: ~
       selenium2:
-        wd_host: http://chromedriver:8643/wd/hub
+        wd_host: http://selenium-chrome:4444/wd/hub
         capabilities:
           extra_capabilities:
             goog:chromeOptions:
@@ -28,7 +28,6 @@ default:
           marionette: null
           chrome:
             switches:
-              - "--headless"
               - "--disable-gpu"
               - "--no-sandbox"
               - "--disable-dev-shm-usage"
